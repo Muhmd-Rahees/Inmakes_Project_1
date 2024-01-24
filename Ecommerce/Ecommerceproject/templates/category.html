@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block metadescription %}
+    {% if category %}
+        {{category.description|truncatewords:155}}
+    {% else %}
+        Welcome to SHOPGLEAM store, here you can buy unique collections.
+    {% endif %}
+{% endblock %}
+
+
+
+{% block title %}
+    {% if category %}
+        {{category.name}} - SHOPGLEAM store
+    {% else %}
+        See Our New Collections - SHOPGLEAM store
+    {% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+    {% if category %}
+    <div>
+        <div>
+            <p style="text-align: center;">
+                <a href="{% url 'shopapp:allProdCat' %}">Our Product Collections</a>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div>
+    {% if category %}
+        <div style="text-align: center;">
+            <img src="{{category.image.url}}" alt="{{category.name}}" style="width: 130px; height: 130px;">
+        </div>
+    </div>
+        <br>
+    <div>
+        <h1>{{category.name}}</h1>
+        <p>{{category.description}}</p>
+    </div>
+    {% else %}
+    <div>
+        <img src="{% static 'img/banner.png' %}" alt="Our Products" width="1150px;" max-width="100%;">
+    </div>
+        <br>
+    <div>
+        <h1>Our Product Collections</h1>
+        <p>Welcome to ShopGleam, where fashion meets radiance! 🌟 Immerse yourself in a world of curated elegance and captivating style. At ShopGleam, we believe in transforming your shopping experience into a luminous journey, offering a carefully selected collection that sparkles with sophistication and glamour.</p>
+    </div>
+    {% endif %}
+
+<div class="container">
+    <div class="row mx_auto">
+        {% for i in products.object_list %}
+            <div class="my-bottom-margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+                <div class="card text-center" style="min-width: 18rem;">
+                    <a href="{{i.get_url}}"> 
+                        {% if i.image %}
+                        <img class="card-img-top my-image" src="{{i.image.url}}" alt="{{i.name}}" widht="50%;" height="350px;">
+                        {% endif %}
+                    </a>
+
+                <div class="card-body">
+                    <h4>{{i.name}}</h4>
+                <p>{{i.price}}</p>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="mx_auto">
+        {% if products.paginator.num_pages > 1 %}
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div><br>
+</div>
+{% endblock %}
+

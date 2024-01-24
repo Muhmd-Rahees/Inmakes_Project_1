@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    Check out our products in SHOPGLEAM store.
+    
+{% endblock %}
+
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<div>
+    <p class="text-center my_search_text">You have searched for:<b>{{query}}</b></p>
+</div>
+
+
+
+<div class="container">
+    <div class="row mx_auto">
+        {% for i in products %}
+            <div class="my-bottom-margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+                <div class="card text-center" style="min-width: 18rem;">
+                    <a href="{{i.get_url}}"> 
+                        {% if i.image %}
+                        <img class="card-img-top my-image" src="{{i.image.url}}" alt="{{i.name}}" widht="50%;" height="350px;">
+                        {% endif %}
+                    </a>
+
+                <div class="card-body">
+                    <h4>{{i.name}}</h4>
+                <p>{{i.price}}</p>
+                </div>
+                </div>
+            </div>
+          
+
+
+
+
+
+{% empty %}
+<div class="row mx_auto">
+    <p class="text-center my_search_text">0 Results Found</p>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
