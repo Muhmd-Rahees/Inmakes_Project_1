@@ -20,9 +20,9 @@ Cart-SHOPGLEAM Company PVT LTD.
             Your Shopping Cart Is Empty
         </h1>
         <br>
-        <p class="text-center">Please Click
+        <!-- <p class="text-center">Please Click
             <a href="{% url 'shopapp:allProdCat' %}">Here</a>To Continue Shopping.
-        </p>
+        </p> -->
     </div>
 </div>
 {% else %}
@@ -50,7 +50,7 @@ Cart-SHOPGLEAM Company PVT LTD.
                 {% for cart_item in cart_items %}
                 <tr>
                     <td>
-                        <a href="cart_item.product.get_absolute_url">
+                        <a href="{{ cart_item.product.get_url }}">
                             <img src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image" height="100px;" width="100px;">
                         </a>
                     </td>
@@ -103,7 +103,6 @@ Cart-SHOPGLEAM Company PVT LTD.
                     Check Out 
                 </th>
             </tr>
-
         </thead>
         <tbody>
             <tr>
