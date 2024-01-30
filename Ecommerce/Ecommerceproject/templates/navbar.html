@@ -8,7 +8,7 @@
       <ul class="navbar-nav mr-auto">
        
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="{% url 'shopapp:allProdCat' %}">Home</a>
         </li>
         <li class="nav-item dropdown {% if 'Shopapp' in request.path %} active {% endif %}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,16 +36,3 @@
       </form>
     </div>
   </nav>
-
-
-<!-- <nav>
-    <ul>
-        <li><a href=""></a></li>
-       
-        
-        <li><a href=""></a></li>
-       
-        <li></li>
-    </ul>
-</nav -->
-<!-- <form class="form-inline my-2 my-lg-0"></form> -->
